@@ -1,5 +1,7 @@
 import React,{Component} from 'react'
 import {Link} from 'react-router-dom'
+import PostsGrid from './PostsGrid'
+import {capitalize} from '../utils/helpers'
 
 class Home extends Component {
 
@@ -9,18 +11,19 @@ class Home extends Component {
 
 	return <div className="container">
 			  
-			   <p>Catagories:</p>
+			   
 			   <ul className="nav">
 
 				{categories && categories.map((category) => {
 		          return  <li className="nav-item" key={category.name}>
-		    				<Link className="nav-link" to={`/${category.path}`}>{category.name}</Link>
+		    				<Link className="nav-link" to={`/${category.path}`}>{capitalize(category.name)}</Link>
 		  				  </li>
 		          			
 		            
 	            })}
 
 	            </ul>
+	            <PostsGrid/>
 			  </div>
 
 
