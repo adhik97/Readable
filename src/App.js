@@ -5,6 +5,7 @@ import { Route,Switch } from 'react-router-dom'
 import Page404 from './components/Page404'
 import PostsGrid from './components/PostsGrid'
 import Home from './components/Home'
+import DetailedPostPage from './components/DetailedPostPage'
 
 
 class App extends Component {
@@ -22,7 +23,7 @@ class App extends Component {
     const {categories} = this.state
 
     return (
-      <div className="container">
+      <div>
         <Switch>        
 
         {categories && categories.map((category) => {
@@ -31,6 +32,7 @@ class App extends Component {
                   })}              
 
         <Route exact path='/' render={() => (<Home categories={categories}/>)}/>
+        <Route path="/post/:id" component={DetailedPostPage}/>
         <Route component={Page404}/>
       </Switch>      
     </div>

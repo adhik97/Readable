@@ -1,8 +1,13 @@
-import {GET_POSTS,VOTE_POST} from '../actions'
+import {GET_POSTS,VOTE_POST,ADD_POST,DELETE_POST} from '../actions'
+
 
 const posts = (state={} , action) => {
 
-	switch(action.type){
+	const {id,centiment,postData,type} = action
+
+	switch(type){
+
+		
 
 		case GET_POSTS:
 		let postsObjects = action.data.reduce((acc,val) => {
@@ -17,7 +22,6 @@ const posts = (state={} , action) => {
 
 
 		case VOTE_POST:
-		const {id,centiment} = action
 		const preVote =state[id].voteScore
 
 		
@@ -25,6 +29,19 @@ const posts = (state={} , action) => {
 			...state,
 			[id]:{...state[id],voteScore:centiment==='up'?preVote+1:preVote-1}
 		}
+
+		case ADD_POST:
+		return {...state,
+				[postData.id] : {...postData}
+
+		}
+
+		case DELETE_POST:
+		return {
+			...state,
+			[id]:{...state[id],deleted:true}
+		}
+
 
 		default:
 		return state
