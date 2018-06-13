@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import ThumbUp from 'react-icons/lib/md/thumb-up'
 import ThumbDown from 'react-icons/lib/md/thumb-down'
 import HomeIcon from 'react-icons/lib/md/home'
+import PropTypes from 'prop-types'
 
 const spanStyle = {marginRight:'1.25em'}
 
@@ -41,6 +42,12 @@ class DetailedPostInfo extends Component {
 				  			</div>
 
 	}
+}
+
+DetailedPostInfo.propTypes = {
+	post:PropTypes.object,
+	doVote:PropTypes.func,
+	deletePostById:PropTypes.func
 }
 
 export default DetailedPostInfo

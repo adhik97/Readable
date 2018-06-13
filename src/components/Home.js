@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import PostsGrid from './PostsGrid'
 import {capitalize} from '../utils/helpers'
 import CreateIcon from 'react-icons/lib/md/create'
+import PropTypes from 'prop-types'
 
 
 
@@ -33,6 +34,10 @@ class Home extends Component {
 	            <PostsGrid/>
 		 </div>		
 	}
+}
+
+Home.propTypes = {
+	categories:PropTypes.array
 }
 
 export default Home

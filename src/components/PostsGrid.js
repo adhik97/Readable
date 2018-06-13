@@ -5,6 +5,7 @@ import {capitalize} from '../utils/helpers'
 import {Link} from 'react-router-dom'
 import HomeIcon from 'react-icons/lib/md/home'
 import sortBy from 'sort-by'
+import PropTypes from 'prop-types'
 
 
 
@@ -84,6 +85,11 @@ const mapStoreToProps = (posts,{category}) => {
 	}
 
 	
+}
+
+PostsGrid.propTypes = {
+	category:PropTypes.string,
+	oldPosts:PropTypes.array
 }
 
 export default connect(mapStoreToProps)(PostsGrid)

@@ -6,6 +6,7 @@ import HomeIcon from 'react-icons/lib/md/home'
 import {Link} from 'react-router-dom'
 import DetailedPostInfo from './DetailedPostInfo'
 import CommentGrid from './CommentGrid'
+import PropTypes from 'prop-types'
 
 
 
@@ -53,6 +54,13 @@ const mapStateToProps = (state,{match}) =>{
 const mapDispatchToProps = {
 	votePost,
 	deletePostById:deletePost
+}
+
+DetailedPostPage.propTypes = {
+	votePost:PropTypes.func,
+	deletePostById:PropTypes.func,
+	post:PropTypes.object
+
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(DetailedPostPage)

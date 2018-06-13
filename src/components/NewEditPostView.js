@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import HomeIcon from 'react-icons/lib/md/home'
 import ArrowBack from 'react-icons/lib/md/arrow-back'
+import PropTypes from 'prop-types'
 
 
 class NewEditPostView extends Component {
@@ -147,6 +148,16 @@ const mapStateToProps = (state,{id}) => {
 	return {
 		post: id !== undefined ? state[id] : null
 	}
+}
+
+NewEditPostView.propTypes = {
+	edit:PropTypes.bool,
+	post:PropTypes.object,
+	editPostAction:PropTypes.func,
+	addPostAction:PropTypes.func,
+	categories:PropTypes.array,
+	id:PropTypes.string
+
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(NewEditPostView)

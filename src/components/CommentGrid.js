@@ -4,7 +4,8 @@ import {getAllComments,postComment,deleteComment,postCommentVote,putEditComment}
 import {uidGenerator} from '../utils/helpers'
 import {postCommentAction,deleteCommentAction} from '../actions'
 import {connect} from 'react-redux'
-import update from 'immutability-helper';
+import update from 'immutability-helper'
+import PropTypes from 'prop-types'
 
 class CommentGrid extends Component {
 
@@ -168,6 +169,12 @@ class CommentGrid extends Component {
 const mapDispatchToProps = {
 	addComment:postCommentAction,
 	removeComment:deleteCommentAction
+}
+
+CommentGrid.propTypes = {
+	id:PropTypes.string,
+	addComment:PropTypes.func,
+	removeComment:PropTypes.func
 }
 
 export default connect(null,mapDispatchToProps)(CommentGrid)

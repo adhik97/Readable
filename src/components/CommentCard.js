@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 import ThumbUp from 'react-icons/lib/md/thumb-up'
 import ThumbDown from 'react-icons/lib/md/thumb-down'
+import PropTypes from 'prop-types'
 
 
 const spanStyle = {marginRight:'1.25em'}
@@ -68,6 +69,14 @@ class CommentCard extends Component {
 
 			   </div>
 	}
+}
+
+CommentCard.propTypes = {
+	onEditPressed:PropTypes.func,
+	comment:PropTypes.object,
+	onDeletePressed:PropTypes.func,
+	onVotePressed:PropTypes.func
+
 }
 
 export default CommentCard
