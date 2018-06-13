@@ -33,7 +33,7 @@ class DetailedPostInfo extends Component {
 				  				<div className="text-right">{new Date(post.timestamp).toLocaleString()}
 				  				<br/>
 				  				<div className="btn-group">
-								  <button type="button" className="btn btn-primary btn-sm">Edit</button>
+								  <Link to={`/editpost/${post.id}`} className="btn btn-primary btn-sm">Edit</Link>
 								  <button type="button" onClick={() => deletePostById(post.id)}className="btn btn-danger btn-sm">Delete</button>
   
 								</div>

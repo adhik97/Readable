@@ -29,9 +29,9 @@ class DetailedPostPage extends Component {
 
 		const homeLink = <Link className="btn btn-link" to="/"><HomeIcon size={30}/></Link>
 
-		const noPostRender = <div className="container"><h3 className="text-center">No post with that ID found, Click {homeLink} for HomePage</h3></div>
+		const noPostRender = <div className="container"><br/><br/><br/><h3 className="text-center">No post with that ID found, Click {homeLink} for HomePage</h3></div>
 
-		const PostDeleted = <div className="container"><h3 className="text-center">This post has been deleted, Click {homeLink} for HomePage</h3></div>
+		const PostDeleted = <div className="container"><br/><br/><br/><h3 className="text-center">This post has been deleted, Click {homeLink} for HomePage</h3></div>
 
 
 

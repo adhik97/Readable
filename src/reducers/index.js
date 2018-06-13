@@ -1,9 +1,9 @@
-import {GET_POSTS,VOTE_POST,ADD_POST,DELETE_POST} from '../actions'
+import {GET_POSTS,VOTE_POST,ADD_POST,DELETE_POST,EDIT_POST} from '../actions'
 
 
 const posts = (state={} , action) => {
 
-	const {id,centiment,postData,type} = action
+	const {id,centiment,postData,type,editData} = action
 
 	switch(type){
 
@@ -40,6 +40,14 @@ const posts = (state={} , action) => {
 		return {
 			...state,
 			[id]:{...state[id],deleted:true}
+		}
+
+		case EDIT_POST:
+		return {
+			...state,
+			[id]:{...state[id],
+				title:editData.title,
+				body:editData.body}
 		}
 
 

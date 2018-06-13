@@ -4,6 +4,7 @@ import {getCategories} from './utils/APIcalls'
 import { Route,Switch } from 'react-router-dom'
 import Page404 from './components/Page404'
 import PostsGrid from './components/PostsGrid'
+import NewEditPostView from './components/NewEditPostView'
 import Home from './components/Home'
 import DetailedPostPage from './components/DetailedPostPage'
 
@@ -33,6 +34,8 @@ class App extends Component {
 
         <Route exact path='/' render={() => (<Home categories={categories}/>)}/>
         <Route path="/post/:id" component={DetailedPostPage}/>
+        <Route path="/newpost" render={() => (<NewEditPostView categories={categories}/>)}/>
+        <Route path="/editpost/:id" render={(props) => (<NewEditPostView edit={true} id={props.match.params.id} categories={categories}/>)}/>
         <Route component={Page404}/>
       </Switch>      
     </div>
