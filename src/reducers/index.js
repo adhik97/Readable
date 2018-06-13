@@ -1,9 +1,10 @@
-import {GET_POSTS,VOTE_POST,ADD_POST,DELETE_POST,EDIT_POST} from '../actions'
+import {GET_POSTS,VOTE_POST,ADD_POST,DELETE_POST,EDIT_POST,POST_COMMENT,DELETE_COMMENT} from '../actions'
 
 
 const posts = (state={} , action) => {
 
 	const {id,centiment,postData,type,editData} = action
+	
 
 	switch(type){
 
@@ -48,6 +49,20 @@ const posts = (state={} , action) => {
 			[id]:{...state[id],
 				title:editData.title,
 				body:editData.body}
+		}
+
+		case POST_COMMENT:
+		const Count = state[id].commentCount
+		return {
+			...state,
+			[id]:{...state[id],commentCount:Count+1}
+		}
+
+		case DELETE_COMMENT:
+		const oldCount = state[id].commentCount
+		return {
+			...state,
+			[id]:{...state[id],commentCount:oldCount-1}
 		}
 
 

@@ -16,6 +16,8 @@ export const getCategories = () =>
 	.then(res => res.json())
 	.then(resjson => resjson.categories)
 
+/////////////////// - Posts APIs - //////////////////////////////
+
 export const getAllPosts = () =>
 	fetch(`${api}/posts`,{headers})
 	.then(res => res.json())
@@ -60,5 +62,50 @@ export const editPost = (id,data) => {
 		body:JSON.stringify(data)
 	}).then(res => res.json())
 }
-	
+
+/////////////////// - Comments APIs - //////////////////////////////
+
+export const getAllComments = (parentId) => {
+
+	return fetch(`${api}/posts/${parentId}/comments`,{headers})
+			.then(res => res.json())
+
+}
+
+export const postComment = (commentData) => {
+	return fetch(`${api}/comments`,{
+		method:'post',
+		headers:{...headers,'Content-Type':'application/json'},
+		body:JSON.stringify(commentData)
+	}).then(res => res.json())
+}
+
+export const deleteComment = (commentId) => {
+	return fetch(`${api}/comments/${commentId}`,{
+		method:'delete',
+		headers
+	}).then(res => res.json())
+}
+
+export const postCommentVote = (commentId,centiment) =>
+	{
+		const jsonData = {'option':centiment==='up'?'upVote':'downVote'}
+		
+
+		return fetch(`${api}/comments/${commentId}`,{
+			method:'POST',
+			headers:{...headers,'Content-Type': 'application/json'},
+			body:JSON.stringify(jsonData)})
+		.then(res => res.json())
+	}
+
+export const putEditComment = (commentId,data) => {
+
+	return fetch(`${api}/comments/${commentId}`,{
+		method:'put',
+		headers:{...headers,'Content-Type':'application/json'},
+		body:JSON.stringify(data)
+	}).then(res => res.json())
+
+}
 

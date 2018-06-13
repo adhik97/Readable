@@ -5,6 +5,7 @@ import { votePost,deletePost } from '../actions'
 import HomeIcon from 'react-icons/lib/md/home'
 import {Link} from 'react-router-dom'
 import DetailedPostInfo from './DetailedPostInfo'
+import CommentGrid from './CommentGrid'
 
 
 
@@ -37,10 +38,7 @@ class DetailedPostPage extends Component {
 
 		return <div>{post===undefined ? noPostRender : (post.deleted === true ? PostDeleted : <div>
 							<DetailedPostInfo post={post} doVote={this.doVote} deletePostById={this.postDelete}/>
-							<div className="container">
-				 	 			<p>This is some text.</p>      
-				  				<p>This is another text.</p>      
-							</div>
+							<CommentGrid id={post.id}/>
 						</div>)}
 				</div>
 	}
