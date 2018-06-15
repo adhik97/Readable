@@ -10,6 +10,12 @@ import PropTypes from 'prop-types'
 
 
 
+		const homeLink = <Link className="btn btn-link" to="/"><HomeIcon size={30}/></Link>
+
+		const noPostRender = <div className="container"><br/><br/><br/><h3 className="text-center">No post with that ID found, Click {homeLink} for HomePage</h3></div>
+
+		const PostDeleted = <div className="container"><br/><br/><br/><h3 className="text-center">This post has been deleted, Click {homeLink} for HomePage</h3></div>
+
 
 class DetailedPostPage extends Component {
 
@@ -29,14 +35,7 @@ class DetailedPostPage extends Component {
 
 		const {post} = this.props
 
-		const homeLink = <Link className="btn btn-link" to="/"><HomeIcon size={30}/></Link>
-
-		const noPostRender = <div className="container"><br/><br/><br/><h3 className="text-center">No post with that ID found, Click {homeLink} for HomePage</h3></div>
-
-		const PostDeleted = <div className="container"><br/><br/><br/><h3 className="text-center">This post has been deleted, Click {homeLink} for HomePage</h3></div>
-
-
-
+		
 		return <div>{post===undefined ? noPostRender : (post.deleted === true ? PostDeleted : <div>
 							<DetailedPostInfo post={post} doVote={this.doVote} deletePostById={this.postDelete}/>
 							<CommentGrid id={post.id}/>
@@ -45,11 +44,9 @@ class DetailedPostPage extends Component {
 	}
 }
 
-const mapStateToProps = (state,{match}) =>{
-	return {
+const mapStateToProps = (state,{match}) =>({
 		post:state[match.params.id]
-	}
-}
+	})
 
 const mapDispatchToProps = {
 	votePost,

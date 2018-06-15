@@ -1,4 +1,4 @@
-import React,{Component} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import PostsGrid from './PostsGrid'
 import {capitalize} from '../utils/helpers'
@@ -7,16 +7,10 @@ import PropTypes from 'prop-types'
 
 
 
-class Home extends Component {
+const Home = ({categories}) => {
 
-
-	render(){
-
-	const {categories} = this.props
-
-	return <div className="container">
-			  
-			
+	return <div className="container">			  
+	
 			   <ul className="nav">
 
 				{categories && categories.map((category) => {
@@ -32,8 +26,7 @@ class Home extends Component {
 	            <li className="nav-item"><Link className="btn btn-outline-primary" to="/newpost">New Post <CreateIcon size={17}/></Link></li>
 	            </ul>
 	            <PostsGrid/>
-		 </div>		
-	}
+		 </div>
 }
 
 Home.propTypes = {

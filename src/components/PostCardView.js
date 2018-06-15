@@ -1,6 +1,5 @@
-import React,{Component} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 
 
@@ -8,13 +7,7 @@ import PropTypes from 'prop-types'
 
 
 
-class PostCardView extends Component {
-
-	
-	render(){
-
-		const {post} = this.props
-
+const PostCardView = ({post}) => {
 
 		return <div className="card">
     			<div className="card-body">
@@ -29,13 +22,11 @@ class PostCardView extends Component {
   				</div>
   			</div>
 	}
-}
+
 
 PostCardView.propTypes = {
   post:PropTypes.object
 }
 
 
-
-
-export default connect(null)(PostCardView)
+export default PostCardView
