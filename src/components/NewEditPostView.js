@@ -3,16 +3,24 @@ import {addPost,editPost} from '../utils/APIcalls'
 import {uidGenerator} from '../utils/helpers'
 import {addPostAction,editPostAction} from '../actions'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link,Redirect} from 'react-router-dom'
 import HomeIcon from 'react-icons/lib/md/home'
 import ArrowBack from 'react-icons/lib/md/arrow-back'
 import PropTypes from 'prop-types'
 
 
+const postRedirect = <Redirect to="/"/>
+
+
 class NewEditPostView extends Component {
 	state = {
-		submitMessage:null
+		submitMessage:null,
+		editSuccess:false,
+		postSuccess:false
 	}
+
+	
+
 
 	componentDidMount(){
 
@@ -56,7 +64,7 @@ class NewEditPostView extends Component {
 			}
 
 			editPostAction(data,post.id)
-			editPost(post.id,data).then(() => this.setState({submitMessage:'Post has been edited'}))
+			editPost(post.id,data).then(() => this.setState({editSuccess:true}))
 		}
 		else
 		{
@@ -71,25 +79,18 @@ class NewEditPostView extends Component {
 		}
 
 		postInfo.category === 'none' ? this.setState({submitMessage:'Select a category'}) : addPost(postInfo).then(data => this.props.addPostAction(data))
-						.then(() => this.setState({submitMessage: 'Post added'}))
-						.then(() => {
-							this.postTitle.value = ''
-							this.postBody.value = ''
-							this.postAuthor.value = ''
-							this.postCategory.value = 'none'
-						})
-		
+						.then(() => this.setState({postSuccess:true}))		
 		}
 
 	}
 
 	render(){
 
-		const {categories,edit,id} = this.props
-		const {submitMessage} = this.state
+		const {categories,edit,id,post,fromDetail} = this.props
+		const {submitMessage,postSuccess,editSuccess} = this.state
 
 			return <div className="container">
-					<div className="text-right"><Link className="btn btn-link" to={edit ? `/post/${id}` : '/'}>{edit ? <ArrowBack size={30}/> : <HomeIcon size={30}/>}</Link></div>
+					<div className="text-right"><Link className="btn btn-link" to={edit ? (fromDetail ? (post ? `/${post.category}/${id}` : '/') : '/' ) : '/' }>{edit ? <ArrowBack size={30}/> : <HomeIcon size={30}/>}</Link></div>
 					<form>
 				    <div className="form-group">
 				      <input type="text"
@@ -135,6 +136,9 @@ class NewEditPostView extends Component {
 				    <br/>
 				    <h5>{submitMessage}</h5>
 			  		</form>
+
+			  		{post && editSuccess ? (fromDetail ? <Redirect to={`/${post.category}/${post.id}`}/> : postRedirect) : null}
+			  		{postSuccess && postRedirect}
 			  	</div>
 	}
 }

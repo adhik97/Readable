@@ -28,14 +28,14 @@ class App extends Component {
         <Switch>        
 
         {categories && categories.map((category) => {
-          return <Route className="nav-link" key={category.path} path={`/${category.path}`} render={() => (<PostsGrid category={category.name}/>)}/>
+          return <Route exact className="nav-link" key={category.path} path={`/${category.path}`} render={() => (<PostsGrid category={category.name}/>)}/>
                  
                   })}              
 
         <Route exact path='/' render={() => (<Home categories={categories}/>)}/>
-        <Route path="/post/:id" component={DetailedPostPage}/>
+        <Route exact path="/editpost/:id" render={(props) => (<NewEditPostView edit={true} id={props.match.params.id} fromDetail = {props.location.state && props.location.state.fromDetail===true ? true : false} categories={categories}/>)}/>
+        <Route path="/:category/:id" component={DetailedPostPage}/>
         <Route path="/newpost" render={() => (<NewEditPostView categories={categories}/>)}/>
-        <Route path="/editpost/:id" render={(props) => (<NewEditPostView edit={true} id={props.match.params.id} categories={categories}/>)}/>
         <Route component={Page404}/>
       </Switch>      
     </div>
